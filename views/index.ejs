@@ -5,18 +5,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="/style.css">
     <title>Bicycle Rental</title>
 </head>
 
 <body>
-    <h1>hello world</h1>
-    <h2>Available Bicycles</h2>
-    <% for (let i = 0; i < product.length; i++){ %>
-    <div class="product">
-        <img alt="<%=product[i].name" />
-        <h2>Name</h2>
-        <h3>Price: </h3>
-    </div>
+    <nav id="navbar">
+        <h1>Bike Rental</h1>
+    </nav>
+    <section id="main">
+        <div class="products">
+            <% for (let i = 0; i < products.length; i++){%>
+            <div class="product">
+                <img alt=<%=products[i].name%> src=<%=products[i].image%> />
+                <h2><%=products[i].name%></h2>
+                <h3>Price: <%=products[i].price%></h3>
+                <button class="btn">Select</button>
+            </div>
+            <%}%>
+        </div> 
+    </section>
+
+
 </body>
 
 </html>
