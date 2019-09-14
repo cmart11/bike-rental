@@ -3,6 +3,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const data = require('../data/bikerentals.json');
+const addToCart = require('../client/main.js');
 
 const PORT = process.env.PORT || 8080;
 const app = express();
@@ -17,21 +18,27 @@ app.use(morgan('dev'));
 app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname, '..', '/public')));
 
+let cart = [];
+
+let util = {
+    products: data.products,
+    cart,
+    addToCart,
+};
+
 app.get('/', (req, res, next) => {
-    // res.sendFile(path.join(__dirname, '..', 'views'));
     try {
-        res.render('index.ejs', { products: data.products });
+        res.render('index.ejs', { ...util });
     } catch (error) {
         next(error);
     }
 });
 
-app.get('/:productId', (req, res, next) => {
+app.post('/', (req, res, next) => {
     try {
-        const productId = +req.params.productId;
-        const product = data.products.filter(el => el.id === productId)[0];
-        console.log('product', product);
-        res.render('index.ejs', { product });
+        cart.push(req.body.product);
+        console.log('product');
+        res.render('index.ejs', { ...util });
     } catch (error) {
         next(error);
     }
@@ -39,8 +46,8 @@ app.get('/:productId', (req, res, next) => {
 
 // error handling endware
 app.use((err, req, res, next) => {
-    console.error(err)
-    console.error(err.stack)
+    console.error(err);
+    console.error(err.stack);
     res.status(err.status || 500).send(err.message || 'Internal server error.')
 });
 

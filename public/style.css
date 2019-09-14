@@ -10,7 +10,7 @@
     justify-content: center;
 }
 
-#main{
+.main{
     display: flex;
     justify-content: center;
 }
