@@ -20,18 +20,18 @@ app.use(express.static(path.join(__dirname, './public')));
 app.get('/', (req, res, next) => {
     // res.sendFile(path.join(__dirname, '..', 'views'));
     try {
-        res.render('index.ejs', { bikes: data.products });
+        res.render('index.ejs', { products: data.products });
     } catch (error) {
         next(error);
     }
 });
 
-app.get('/:bikeId', (req, res, next) => {
+app.get('/:productId', (req, res, next) => {
     try {
-        const bikeId = +req.params.bikeId;
-        const bike = data.products.filter(el => el.id === bikeId)[0];
-        console.log('bike', bike);
-        res.render('index.ejs', { bicycle: bike });
+        const productId = +req.params.productId;
+        const product = data.products.filter(el => el.id === productId)[0];
+        console.log('product', product);
+        res.render('index.ejs', { product });
     } catch (error) {
         next(error);
     }

@@ -11,8 +11,9 @@
 <body>
     <h1>hello world</h1>
     <h2>Available Bicycles</h2>
+    <% for (let i = 0; i < product.length; i++){ %>
     <div class="product">
-        <img alt="" />
+        <img alt="<%=product[i].name" />
         <h2>Name</h2>
         <h3>Price: </h3>
     </div>
