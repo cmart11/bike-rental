@@ -15,6 +15,13 @@
     justify-content: center;
 }
 
+#cart{
+    position: fixed;
+    float: right;
+    background-color: white;
+    margin-left: 15px;
+}
+
 .products{
     display: flex;
     justify-content: center;

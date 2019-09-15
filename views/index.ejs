@@ -14,8 +14,8 @@
     <nav id="navbar">
         <h1>Bike Rental</h1>
     </nav>
-    <section class="main">
-        <div>
+    <section>
+        <div id="cart">
             <%if (!cart.length){%>
             <h3>Cart is empty</h3>
             <%} else {%>
@@ -37,29 +37,7 @@
             <%}%>
         </div> 
     </section>
-    <script> 
-        const ul = document.getElementById('list');
-        const addToCart = (event) => {
-            console.dir(event.target);
-            event.preventDefault();
-            const product = products.filter(el => el.id === event.target.id)[0];
-            fetch(`http://localhost:8080/${event.target.name}`), {
-                method: "POST",
-                headers: {
-                    Accept: "application/json",
-                    "Content-type": "application/json"
-                },
-                body: JSON.stringify({ product })
-                    .then(res => res.json())
-                    .then(json => {
-                        const li = document.createElement('li');
-                        li.innerText = json.name
-                        ul.appendChild(li);
-                    })
-            }
-        };   
-    </script>
-
+    <script type="text/javascript" src="bundle.js"></script>
 </body>
 
 </html>
